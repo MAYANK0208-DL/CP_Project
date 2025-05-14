@@ -97,3 +97,25 @@ button:hover {
     font-size: 0.9rem;
     color: #444;
 }
+#unmute-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+    padding: 10px 15px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+

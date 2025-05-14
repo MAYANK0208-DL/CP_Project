@@ -7,10 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<button id="mute-toggle" onclick="toggleMute()">🔊 Mute</button>
+
     {% if background_url.endswith('.mp4') %}
-        <video id="background-image" autoplay loop muted>
-            <source src="{{ background_url }}" type="video/mp4">
-        </video>
+        <video id="background-video" autoplay loop>
+    <source src="{{ background_url }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<button id="unmute-button" onclick="unmuteVideo()">🔊 Unmute</button>
+
     {% else %}
         <img id="background-image" src="{{ background_url }}" alt="background">
     {% endif %}
@@ -63,15 +69,24 @@
     </div>
 
     <script>
-        function speakInput() {
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = 'en-US';
-            recognition.start();
-            recognition.onresult = function (event) {
-                const city = event.results[0][0].transcript;
-                document.getElementById('city-input').value = city;
-            };
-        }
-    </script>
+    function speakInput() {
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.start();
+        recognition.onresult = function (event) {
+            const city = event.results[0][0].transcript;
+            document.getElementById('city-input').value = city;
+        };
+    }
+
+    function unmuteVideo() {
+        const video = document.getElementById('background-video');
+        video.muted = false;
+        video.volume = 1.0;
+        video.play();
+        document.getElementById('unmute-button').style.display = 'none';
+    }
+</script>
+
 </body>
 </html>

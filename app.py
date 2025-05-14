@@ -9,7 +9,7 @@ API_KEY = "9fc7a7a2964c1df2075fcad2c3bff67b"
 WEATHER_BG_MAP = {
     "clear": "clear.jpeg",
     "rain": "rain.mp4",
-    "cloud": "cloud.gif",
+    "cloud": "clouds.gif",
     "snow": "snow.gif",
     "thunder": "thunder.mp4"
 }
@@ -19,12 +19,12 @@ def get_background(description):
     for key in WEATHER_BG_MAP:
         if key in desc:
             return url_for('static', filename=f'background/{WEATHER_BG_MAP[key]}')
-    return url_for('static', filename='background/default.gif')
+    return url_for('static', filename='background/default.mp4')
 
 def get_weather_emoji(description):
     desc = description.lower()
     if 'clear' in desc:
-        return '☀️'
+        return '🌞'
     elif 'cloud' in desc:
         return '☁️'
     elif 'rain' in desc:
@@ -33,6 +33,8 @@ def get_weather_emoji(description):
         return '⛈️'
     elif 'snow' in desc:
         return '❄️'
+    elif 'mist' in desc or 'fog' in desc:
+        return '🌫️'
     else:
         return '🌈'
 
@@ -40,7 +42,7 @@ def get_weather_emoji(description):
 def index():
     weather = None
     forecast = None
-    background_url = url_for('static', filename='background/default.gif')
+    background_url = url_for('static', filename='background/default.mp4')
 
     if request.method == 'POST':
         city = request.form['city'].strip()
