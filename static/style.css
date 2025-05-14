@@ -4,10 +4,14 @@ html, body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Video or image background */
-#background-image {
+#background-image,
+#background-video {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,16 +24,13 @@ html, body {
 
 /* Main container for weather info */
 .weather-container {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     max-width: 500px;
-    margin: 0 auto;
+    width: 90%;
     background: rgba(255, 255, 255, 0.92);
     padding: 2rem;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     z-index: 10;
 }
 
@@ -81,7 +82,7 @@ button:hover {
     border-radius: 10px;
     padding: 10px;
     width: 100px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-size: 0.9rem;
 }
 
@@ -97,25 +98,17 @@ button:hover {
     font-size: 0.9rem;
     color: #444;
 }
+
+/* Mute Button */
 #unmute-button {
     position: absolute;
     bottom: 20px;
     right: 20px;
     z-index: 10;
     padding: 10px 15px;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
-#background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-    object-fit: cover;
-}
-
