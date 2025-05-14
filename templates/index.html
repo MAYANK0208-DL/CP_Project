@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Now - CP_GroupProject</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% if background_url.endswith('.mp4') %}
+        <video id="background-image" autoplay loop muted>
+            <source src="{{ background_url }}" type="video/mp4">
+        </video>
+    {% else %}
+        <img id="background-image" src="{{ background_url }}" alt="background">
+    {% endif %}
+
+    <div class="weather-container">
+        <h1>🌤️ Weather Now</h1>
+
+        <form method="POST">
+            <input type="text" id="city-input" name="city" placeholder="Enter city name" required>
+            <button type="submit">Search</button>
+            <button type="button" onclick="speakInput()">🎙️ Speak</button>
+        </form>
+
+        {% if weather %}
+            {% if weather.error %}
+                <p class="error">{{ weather.error }}</p>
+            {% else %}
+                <div class="weather-result">
+                    <h2>{{ weather.city }}</h2>
+                    <h2 style="font-size: 3rem;">{{ weather.emoji }}</h2>
+                    <h3>{{ weather.temperature }}°C</h3>
+                    <p>{{ weather.description.title() }}</p>
+                    <p>Humidity: {{ weather.humidity }}%</p>
+                    <p>Wind Speed: {{ weather.wind }} m/s</p>
+                    <p>Sunrise: {{ weather.sunrise }} | Sunset: {{ weather.sunset }}</p>
+                    <p><small>As of {{ weather.time }}</small></p>
+                </div>
+
+                {% if forecast %}
+                    <div class="forecast">
+                        <h3>Next 5 Days Forecast</h3>
+                        {% for day in forecast %}
+                            <div class="forecast-day">
+                                <p>{{ day.date }}</p>
+                                <img src="https://openweathermap.org/img/wn/{{ day.icon }}@2x.png" alt="">
+                                <p>{{ day.temp }}°C</p>
+                                <p>{{ day.desc }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+
+        <div class="credits">
+            <hr>
+            <p><strong>Made for CPgroup Project</strong></p>
+            <p>Mayank, Divyansh, Rahul, Abhigyan, Vaibhav</p>
+        </div>
+    </div>
+
+    <script>
+        function speakInput() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.start();
+            recognition.onresult = function (event) {
+                const city = event.results[0][0].transcript;
+                document.getElementById('city-input').value = city;
+            };
+        }
+    </script>
+</body>
+</html>

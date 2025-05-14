@@ -1,0 +1,99 @@
+/* Basic Reset and Background Setup */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Video or image background */
+#background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
+}
+
+/* Main container for weather info */
+.weather-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    z-index: 10;
+}
+
+/* Input styling */
+input[type="text"] {
+    padding: 0.6rem;
+    width: 60%;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+/* Button styling */
+button {
+    padding: 0.6rem 0.9rem;
+    font-size: 1rem;
+    margin: 5px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1769aa;
+}
+
+/* Weather result layout */
+.weather-result img {
+    width: 100px;
+    height: 100px;
+    margin: 1rem auto;
+}
+
+/* Forecast section */
+.forecast {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.forecast-day {
+    background: #e3f2fd;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+}
+
+/* Error message */
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Credits section */
+.credits {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #444;
+}
